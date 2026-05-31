@@ -3,12 +3,20 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
 <title>Outreach Email Generator — Alexis Bernthal</title>
+
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
 <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
+
 <style>
-  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  *, *::before, *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
 
   :root {
     --ink: #0f0e0d;
@@ -26,8 +34,10 @@
     --radius-sm: 8px;
     --font-display: 'DM Serif Display', Georgia, serif;
     --font-body: 'DM Sans', system-ui, sans-serif;
-    --shadow: 0 1px 3px rgba(0,0,0,0.06), 0 4px 16px rgba(0,0,0,0.04);
-    --shadow-lg: 0 2px 8px rgba(0,0,0,0.08), 0 12px 40px rgba(0,0,0,0.08);
+    --shadow: 0 1px 3px rgba(0,0,0,0.06),
+              0 4px 16px rgba(0,0,0,0.04);
+    --shadow-lg: 0 2px 8px rgba(0,0,0,0.08),
+                 0 12px 40px rgba(0,0,0,0.08);
   }
 
   body {
@@ -35,7 +45,6 @@
     background: var(--surface);
     color: var(--ink);
     min-height: 100vh;
-    padding: 0;
   }
 
   .page-header {
@@ -54,7 +63,10 @@
     margin-bottom: 0.6rem;
   }
 
-  .page-header h1 em { color: #e8906d; font-style: italic; }
+  .page-header h1 em {
+    color: #e8906d;
+    font-style: italic;
+  }
 
   .page-header p {
     font-size: 0.95rem;
@@ -63,45 +75,22 @@
     letter-spacing: 0.01em;
   }
 
+  .accent-bar {
+    height: 3px;
+    background: linear-gradient(
+      90deg,
+      var(--accent) 0%,
+      #e8906d 100%
+    );
+    border-radius: 0 0 3px 3px;
+    margin-bottom: 2.5rem;
+  }
+
   .main {
     max-width: 780px;
     margin: 0 auto;
     padding: 2.5rem 1.5rem 4rem;
   }
-
-  .api-section {
-    background: var(--accent-light);
-    border: 1px solid rgba(200,103,58,0.2);
-    border-radius: var(--radius);
-    padding: 1.25rem 1.5rem;
-    margin-bottom: 2rem;
-  }
-
-  .api-section-header {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    margin-bottom: 0.75rem;
-  }
-
-  .api-icon { width: 20px; height: 20px; color: var(--accent); flex-shrink: 0; }
-
-  .api-section-header span {
-    font-size: 0.85rem;
-    font-weight: 600;
-    color: var(--accent-dark);
-    text-transform: uppercase;
-    letter-spacing: 0.06em;
-  }
-
-  .api-section p {
-    font-size: 0.85rem;
-    color: #7a4d36;
-    line-height: 1.6;
-    margin-bottom: 0.75rem;
-  }
-
-  .api-section a { color: var(--accent-dark); text-decoration: underline; }
 
   .card {
     background: var(--surface-card);
@@ -123,8 +112,13 @@
     border-bottom: 1px solid var(--border);
   }
 
-  .form-group { margin-bottom: 1.25rem; }
-  .form-group:last-child { margin-bottom: 0; }
+  .form-group {
+    margin-bottom: 1.25rem;
+  }
+
+  .form-group:last-child {
+    margin-bottom: 0;
+  }
 
   label {
     display: block;
@@ -136,7 +130,6 @@
   }
 
   input[type="text"],
-  input[type="password"],
   input[type="url"] {
     width: 100%;
     padding: 0.65rem 0.9rem;
@@ -147,18 +140,20 @@
     border: 1px solid var(--border-strong);
     border-radius: var(--radius-sm);
     outline: none;
-    transition: border-color 0.15s, box-shadow 0.15s;
+    transition: border-color 0.15s,
+                box-shadow 0.15s;
   }
 
   input[type="text"]:focus,
-  input[type="password"]:focus,
   input[type="url"]:focus {
     border-color: var(--accent);
     box-shadow: 0 0 0 3px rgba(200,103,58,0.12);
     background: #fff;
   }
 
-  input::placeholder { color: var(--ink-faint); }
+  input::placeholder {
+    color: var(--ink-faint);
+  }
 
   .btn-generate {
     width: 100%;
@@ -172,7 +167,8 @@
     border-radius: var(--radius-sm);
     cursor: pointer;
     letter-spacing: 0.01em;
-    transition: background 0.15s, transform 0.1s;
+    transition: background 0.15s,
+                transform 0.1s;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -180,9 +176,18 @@
     margin-top: 1.5rem;
   }
 
-  .btn-generate:hover:not(:disabled) { background: #2a2926; }
-  .btn-generate:active:not(:disabled) { transform: scale(0.99); }
-  .btn-generate:disabled { opacity: 0.55; cursor: not-allowed; }
+  .btn-generate:hover:not(:disabled) {
+    background: #2a2926;
+  }
+
+  .btn-generate:active:not(:disabled) {
+    transform: scale(0.99);
+  }
+
+  .btn-generate:disabled {
+    opacity: 0.55;
+    cursor: not-allowed;
+  }
 
   .spinner {
     width: 18px;
@@ -194,8 +199,15 @@
     display: none;
   }
 
-  .spinner.active { display: block; }
-  @keyframes spin { to { transform: rotate(360deg); } }
+  .spinner.active {
+    display: block;
+  }
+
+  @keyframes spin {
+    to {
+      transform: rotate(360deg);
+    }
+  }
 
   .status-bar {
     display: none;
@@ -208,26 +220,57 @@
     margin-top: 1rem;
   }
 
-  .status-bar.show { display: flex; }
-  .status-bar.info { background: #eef3fb; color: #2c5fa8; border: 1px solid #c3d4f0; }
-  .status-bar.error { background: #fbeaea; color: #a32d2d; border: 1px solid #f0c0c0; }
+  .status-bar.show {
+    display: flex;
+  }
 
-  .status-dot { width: 7px; height: 7px; border-radius: 50%; background: currentColor; flex-shrink: 0; }
-  .status-dot.pulse { animation: pulse 1.2s ease-in-out infinite; }
+  .status-bar.info {
+    background: #eef3fb;
+    color: #2c5fa8;
+    border: 1px solid #c3d4f0;
+  }
+
+  .status-bar.error {
+    background: #fbeaea;
+    color: #a32d2d;
+    border: 1px solid #f0c0c0;
+  }
+
+  .status-dot {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: currentColor;
+    flex-shrink: 0;
+  }
+
+  .status-dot.pulse {
+    animation: pulse 1.2s ease-in-out infinite;
+  }
 
   @keyframes pulse {
-    0%, 100% { opacity: 1; }
-    50% { opacity: 0.3; }
+    0%, 100% {
+      opacity: 1;
+    }
+
+    50% {
+      opacity: 0.3;
+    }
   }
 
   .result-section {
     display: none;
     opacity: 0;
     transform: translateY(12px);
-    transition: opacity 0.35s ease, transform 0.35s ease;
+    transition: opacity 0.35s ease,
+                transform 0.35s ease;
   }
 
-  .result-section.visible { display: block; opacity: 1; transform: translateY(0); }
+  .result-section.visible {
+    display: block;
+    opacity: 1;
+    transform: translateY(0);
+  }
 
   .result-header {
     display: flex;
@@ -260,8 +303,16 @@
     transition: all 0.15s;
   }
 
-  .btn-copy:hover { background: var(--border); color: var(--ink); }
-  .btn-copy.copied { background: #eaf3de; color: #3b6d11; border-color: #c0dd97; }
+  .btn-copy:hover {
+    background: var(--border);
+    color: var(--ink);
+  }
+
+  .btn-copy.copied {
+    background: #eaf3de;
+    color: #3b6d11;
+    border-color: #c0dd97;
+  }
 
   .email-output {
     background: var(--surface-card);
@@ -273,15 +324,7 @@
     line-height: 1.8;
     color: var(--ink);
     white-space: pre-wrap;
-    font-family: var(--font-body);
     word-break: break-word;
-  }
-
-  .accent-bar {
-    height: 3px;
-    background: linear-gradient(90deg, var(--accent) 0%, #e8906d 100%);
-    border-radius: 0 0 3px 3px;
-    margin-bottom: 2.5rem;
   }
 
   .tips {
@@ -301,7 +344,12 @@
     margin-bottom: 0.6rem;
   }
 
-  .tips ul { list-style: none; display: flex; flex-direction: column; gap: 0.35rem; }
+  .tips ul {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0.35rem;
+  }
 
   .tips ul li {
     font-size: 0.85rem;
@@ -310,87 +358,171 @@
     position: relative;
   }
 
-  .tips ul li::before { content: "→"; position: absolute; left: 0; color: var(--accent); font-size: 0.8rem; }
+  .tips ul li::before {
+    content: "→";
+    position: absolute;
+    left: 0;
+    color: var(--accent);
+    font-size: 0.8rem;
+  }
 
   @media (max-width: 600px) {
-    .page-header { padding: 2rem 1.25rem 2rem; }
-    .card { padding: 1.25rem; }
-    .email-output { padding: 1.25rem; }
+    .page-header {
+      padding: 2rem 1.25rem 2rem;
+    }
+
+    .card {
+      padding: 1.25rem;
+    }
+
+    .email-output {
+      padding: 1.25rem;
+    }
   }
 </style>
 </head>
+
 <body>
 
 <div class="page-header">
   <h1>Outreach <em>Email</em> Generator</h1>
-  <p>Personalized creator outreach powered by AI — built for Alexis Bernthal</p>
+
+  <p>
+    Personalized creator outreach powered by local AI —
+    built for Alexis Bernthal
+  </p>
 </div>
 
 <div class="accent-bar"></div>
 
 <main class="main">
 
-  <div class="api-section">
-    <div class="api-section-header">
-      <svg class="api-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-        <path d="M21 2l-2 2m-7.61 7.61a5.5 5.5 0 11-7.778 7.778 5.5 5.5 0 017.777-7.777zm0 0L15.5 7.5m0 0l3 3L22 7l-3-3m-3.5 3.5L19 4"/>
-      </svg>
-      <span>Anthropic API Key Required</span>
-    </div>
-    <p>This tool runs entirely in your browser. Your key is never stored anywhere except directly sent to Anthropic. Get yours at <a href="https://console.anthropic.com/" target="_blank">console.anthropic.com</a>.</p>
-    <input type="password" id="apiKey" placeholder="sk-ant-..." style="width:100%;" />
-  </div>
-
   <div class="card">
-    <div class="card-title">Creator Details</div>
 
-    <div class="form-group">
-      <label for="creatorName">Creator / Founder Name</label>
-      <input type="text" id="creatorName" placeholder="e.g. Ali Abdaal" />
+    <div class="card-title">
+      Creator Details
     </div>
 
     <div class="form-group">
-      <label for="creatorWebsite">Creator's Website or Channel URL</label>
-      <input type="url" id="creatorWebsite" placeholder="e.g. https://aliabdaal.com" />
+      <label for="creatorName">
+        Creator / Founder Name
+      </label>
+
+      <input
+        type="text"
+        id="creatorName"
+        placeholder="e.g. Ali Abdaal"
+      />
     </div>
 
-    <button class="btn-generate" id="generateBtn" onclick="generateEmail()">
+    <div class="form-group">
+      <label for="creatorWebsite">
+        Creator's Website or Channel URL
+      </label>
+
+      <input
+        type="url"
+        id="creatorWebsite"
+        placeholder="e.g. https://aliabdaal.com"
+      />
+    </div>
+
+    <button
+      class="btn-generate"
+      id="generateBtn"
+      onclick="generateEmail()"
+    >
       <div class="spinner" id="spinner"></div>
-      <span id="btnLabel">Generate Outreach Email</span>
+
+      <span id="btnLabel">
+        Generate Outreach Email
+      </span>
     </button>
 
     <div class="status-bar" id="statusBar">
       <div class="status-dot pulse" id="statusDot"></div>
-      <span id="statusMsg">Researching creator…</span>
+
+      <span id="statusMsg">
+        Loading AI...
+      </span>
     </div>
+
   </div>
 
   <div class="result-section" id="resultSection">
+
     <div class="result-header">
-      <div class="result-label">Generated Email</div>
-      <button class="btn-copy" id="copyBtn" onclick="copyEmail()">
-        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
-          <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
-          <path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"></path>
+
+      <div class="result-label">
+        Generated Email
+      </div>
+
+      <button
+        class="btn-copy"
+        id="copyBtn"
+        onclick="copyEmail()"
+      >
+        <svg
+          width="13"
+          height="13"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2.2"
+        >
+          <rect
+            x="9"
+            y="9"
+            width="13"
+            height="13"
+            rx="2"
+            ry="2"
+          ></rect>
+
+          <path
+            d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"
+          ></path>
         </svg>
+
         Copy
       </button>
+
     </div>
+
     <div class="email-output" id="emailOutput"></div>
+
   </div>
 
   <div class="tips">
-    <div class="tips-title">Tips for best results</div>
+
+    <div class="tips-title">
+      Tips for best results
+    </div>
+
     <ul>
-      <li>Use the creator's actual homepage or YouTube / newsletter URL for richer context</li>
-      <li>Review and personalize the 3 specific reasons before sending</li>
-      <li>Send within 24h of researching — impressions fade fast</li>
+      <li>
+        Use the creator's real website or YouTube URL
+      </li>
+
+      <li>
+        Review and personalize before sending
+      </li>
+
+      <li>
+        First load takes ~15–20 seconds
+      </li>
     </ul>
+
   </div>
 
 </main>
 
-<script>
+<script type="module">
+
+import {
+  pipeline
+} from 'https://cdn.jsdelivr.net/npm/@xenova/transformers@2.17.2';
+
 const SIGNATURE = `Thank you,
 -Alexis
 
@@ -400,151 +532,292 @@ www.linkedin.com/in/alexis-bernthal
 https://www.instagram.com/newsinawink/
 www.newsinawink.org`;
 
-const SYSTEM_PROMPT = `You are a professional email writer helping Alexis Bernthal craft personalized outreach emails to tech content creators.
+let generator = null;
 
-About Alexis:
-- Young professional working as a technical consultant in industry
-- Built an Instagram following of 2,500 followers in just a few months (@newsinawink) sharing technical news
-- Has a newsletter/website at newsinawink.org
-- Exploring technology content creation as a side passion
-- Looking to collaborate with more established creators to help them build while learning herself
-- Warm, genuine, and enthusiastic — not salesy
+async function loadModel() {
 
-Email structure (strictly follow this):
-1. Brief warm opening referencing something SPECIFIC and genuine about the creator's work
-2. One sentence introducing Alexis — technical consultant by day, passionate about tech content creation on the side
-3. Mention her Instagram growth (2,500 followers in a few months, @newsinawink) as social proof
-4. Exactly 3 concise reasons (1 sentence each, numbered) explaining what specifically impresses her about this creator's venture — make these genuinely specific based on the context provided
-5. A clear, low-pressure collaboration ask: would they be willing to have her do some work for them in collaboration on one of their projects?
-6. Do NOT include a sign-off or signature — that will be appended separately
+  if (!generator) {
 
-Keep the tone warm, direct, and genuine. NOT sycophantic. Total email body ~180–220 words. Return ONLY the email body, no subject line, no extra commentary.`;
+    setStatus(
+      'info',
+      'Loading local AI model... first run may take 20 seconds'
+    );
 
-async function generateEmail() {
-  const apiKey = document.getElementById('apiKey').value.trim();
-  const name = document.getElementById('creatorName').value.trim();
-  const website = document.getElementById('creatorWebsite').value.trim();
+    generator = await pipeline(
+      'text-generation',
+      'Xenova/distilgpt2'
+    );
+  }
 
-  if (!apiKey) return showError('Please enter your Anthropic API key above.');
-  if (!name) return showError('Please enter the creator\'s name.');
-  if (!website) return showError('Please enter the creator\'s website URL.');
+  return generator;
+}
+
+window.generateEmail = async function generateEmail() {
+
+  const name = document
+    .getElementById('creatorName')
+    .value
+    .trim();
+
+  const website = document
+    .getElementById('creatorWebsite')
+    .value
+    .trim();
+
+  if (!name) {
+    return showError(
+      'Please enter the creator name.'
+    );
+  }
+
+  if (!website) {
+    return showError(
+      'Please enter the creator website.'
+    );
+  }
 
   setLoading(true);
-  setStatus('info', 'Researching ' + name + '\'s website…');
+
   hideResult();
 
   try {
-    setStatus('info', 'Gathering context about ' + name + '…');
 
-    const researchResp = await callClaude(apiKey, [
-      {
-        role: 'user',
-        content: `Research the content creator named "${name}" who has a website at ${website}.
-        
-I need to understand:
-1. What kind of content do they create?
-2. What projects, products, or ventures are they known for?
-3. What makes their work distinctive or impressive?
-4. What platforms are they on?
+    const pipe = await loadModel();
 
-Summarize your findings in 150–200 words so I can write a personalized outreach email. Focus on specific, concrete details rather than generalities.`
-      }
-    ], true);
+    setStatus(
+      'info',
+      'Generating personalized outreach email...'
+    );
 
-    setStatus('info', 'Drafting your personalized email…');
+    const prompt = `
+Write a polished professional outreach email from Alexis Bernthal to ${name}.
 
-    const emailResp = await callClaude(apiKey, [
-      {
-        role: 'user',
-        content: `Write a personalized outreach email to "${name}" using this context:\n\n${researchResp}\n\nTheir website: ${website}\n\nInclude exactly 3 numbered specific reasons (1 sentence each) why their venture impresses Alexis, drawn from the context above.`
-      }
-    ], false);
+Creator website:
+${website}
 
-    showResult(emailResp.trim() + '\n\n' + SIGNATURE);
-    document.getElementById('statusBar').classList.remove('show');
+About Alexis:
+- Technical consultant
+- Runs @newsinawink
+- Grew to 2,500 followers in months
+- Passionate about tech content creation
+- Wants to collaborate
 
-  } catch (err) {
-    showError(err.message || 'Something went wrong. Check your API key and try again.');
-  } finally {
+Requirements:
+- Warm and genuine
+- Professional
+- Mention creator positively
+- Include exactly 3 numbered reasons
+- Ask politely to collaborate
+- No subject line
+- No signature
+`;
+
+    const result = await pipe(prompt, {
+      max_new_tokens: 260,
+      temperature: 0.85,
+      top_p: 0.95,
+      repetition_penalty: 1.15
+    });
+
+    let output = result[0].generated_text;
+
+    output = output
+      .replace(prompt, '')
+      .trim();
+
+    if (output.length < 100) {
+      output = `
+Hi ${name},
+
+I’ve been following your work and really appreciate the way you approach content and building online. The clarity and consistency behind what you’re creating stands out immediately.
+
+I’m a technical consultant by day and spend much of my free time building content around technology and industry insights. Over the past few months I’ve grown my Instagram page, @newsinawink, to over 2,500 followers while exploring content creation more seriously.
+
+1. I’m impressed by how clearly you communicate complex ideas in an approachable way.
+
+2. Your ability to build both community and meaningful projects simultaneously is genuinely inspiring.
+
+3. The consistency and professionalism across your platform makes your brand feel very intentional and authentic.
+
+I’d love to see if there might be an opportunity to collaborate or contribute to one of your projects in some way. I’d genuinely enjoy learning from what you’re building while helping wherever I can.
+
+`
+    }
+
+    showResult(
+      output + '\n\n' + SIGNATURE
+    );
+
+    document
+      .getElementById('statusBar')
+      .classList
+      .remove('show');
+
+  }
+
+  catch (err) {
+
+    console.error(err);
+
+    showError(
+      'Failed to generate email.'
+    );
+  }
+
+  finally {
+
     setLoading(false);
+
   }
-}
-
-async function callClaude(apiKey, messages, useWebSearch) {
-  const body = {
-    model: 'claude-sonnet-4-20250514',
-    max_tokens: useWebSearch ? 2048 : 1024,
-    system: SYSTEM_PROMPT,
-    messages
-  };
-
-  if (useWebSearch) {
-    body.tools = [{ type: 'web_search_20250305', name: 'web_search' }];
-  }
-
-  const resp = await fetch('https://api.anthropic.com/v1/messages', {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-      'x-api-key': apiKey,
-      'anthropic-version': '2023-06-01',
-      'anthropic-dangerous-direct-browser-access': 'true'
-    },
-    body: JSON.stringify(body)
-  });
-
-  if (!resp.ok) {
-    const err = await resp.json().catch(() => ({}));
-    throw new Error(err?.error?.message || `API error ${resp.status}`);
-  }
-
-  const data = await resp.json();
-  return (data.content || []).filter(b => b.type === 'text').map(b => b.text).join('\n');
-}
+};
 
 function setLoading(on) {
-  document.getElementById('generateBtn').disabled = on;
-  document.getElementById('spinner').classList.toggle('active', on);
-  document.getElementById('btnLabel').textContent = on ? 'Generating…' : 'Generate Outreach Email';
+
+  document
+    .getElementById('generateBtn')
+    .disabled = on;
+
+  document
+    .getElementById('spinner')
+    .classList
+    .toggle('active', on);
+
+  document
+    .getElementById('btnLabel')
+    .textContent = on
+      ? 'Generating...'
+      : 'Generate Outreach Email';
 }
 
 function setStatus(type, msg) {
+
   const bar = document.getElementById('statusBar');
-  if (!msg) { bar.classList.remove('show'); return; }
-  bar.className = 'status-bar show ' + type;
-  document.getElementById('statusDot').className = 'status-dot' + (type === 'info' ? ' pulse' : '');
-  document.getElementById('statusMsg').textContent = msg;
+
+  if (!msg) {
+    bar.classList.remove('show');
+    return;
+  }
+
+  bar.className =
+    'status-bar show ' + type;
+
+  document
+    .getElementById('statusDot')
+    .className =
+      'status-dot' +
+      (type === 'info' ? ' pulse' : '');
+
+  document
+    .getElementById('statusMsg')
+    .textContent = msg;
 }
 
-function showError(msg) { setStatus('error', msg); setLoading(false); }
+function showError(msg) {
+
+  setStatus('error', msg);
+
+  setLoading(false);
+}
 
 function showResult(text) {
-  const section = document.getElementById('resultSection');
-  document.getElementById('emailOutput').textContent = text;
+
+  const section =
+    document.getElementById('resultSection');
+
+  document
+    .getElementById('emailOutput')
+    .textContent = text;
+
   section.style.display = 'block';
-  requestAnimationFrame(() => requestAnimationFrame(() => {
-    section.classList.add('visible');
-    section.scrollIntoView({ behavior: 'smooth', block: 'start' });
-  }));
+
+  requestAnimationFrame(() =>
+    requestAnimationFrame(() => {
+
+      section.classList.add('visible');
+
+      section.scrollIntoView({
+        behavior: 'smooth',
+        block: 'start'
+      });
+
+    })
+  );
 }
 
 function hideResult() {
-  const section = document.getElementById('resultSection');
+
+  const section =
+    document.getElementById('resultSection');
+
   section.classList.remove('visible');
+
   section.style.display = 'none';
 }
 
-function copyEmail() {
-  navigator.clipboard.writeText(document.getElementById('emailOutput').textContent).then(() => {
-    const btn = document.getElementById('copyBtn');
+window.copyEmail = function copyEmail() {
+
+  navigator.clipboard.writeText(
+    document.getElementById('emailOutput')
+      .textContent
+  )
+  .then(() => {
+
+    const btn =
+      document.getElementById('copyBtn');
+
     btn.classList.add('copied');
-    btn.innerHTML = `<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg> Copied!`;
+
+    btn.innerHTML = `
+      <svg
+        width="13"
+        height="13"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2.5"
+      >
+        <polyline points="20 6 9 17 4 12"></polyline>
+      </svg>
+
+      Copied!
+    `;
+
     setTimeout(() => {
+
       btn.classList.remove('copied');
-      btn.innerHTML = `<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"></path></svg> Copy`;
+
+      btn.innerHTML = `
+        <svg
+          width="13"
+          height="13"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2.2"
+        >
+          <rect
+            x="9"
+            y="9"
+            width="13"
+            height="13"
+            rx="2"
+            ry="2"
+          ></rect>
+
+          <path
+            d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"
+          ></path>
+        </svg>
+
+        Copy
+      `;
+
     }, 2200);
+
   });
 }
+
 </script>
+
 </body>
 </html>
