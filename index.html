@@ -1,3 +1,4 @@
+```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -439,6 +440,16 @@
       </span>
     </button>
 
+    <!-- NEW THANK YOU BUTTON -->
+    <button
+      class="btn-generate"
+      id="thankYouBtn"
+      onclick="generateThankYou()"
+      style="margin-top: 0.8rem; background: var(--accent);"
+    >
+      Generate Thank You Message
+    </button>
+
     <div class="status-bar" id="statusBar">
       <div class="status-dot pulse" id="statusDot"></div>
 
@@ -640,8 +651,7 @@ I’m a technical consultant by day and spend much of my free time building cont
 3. The consistency and professionalism across your platform makes your brand feel very intentional and authentic.
 
 I’d love to see if there might be an opportunity to collaborate or contribute to one of your projects in some way. I’d genuinely enjoy learning from what you’re building while helping wherever I can.
-
-`
+`;
     }
 
     showResult(
@@ -669,6 +679,30 @@ I’d love to see if there might be an opportunity to collaborate or contribute 
     setLoading(false);
 
   }
+};
+
+window.generateThankYou = function generateThankYou() {
+
+  const thankYouMessage = `Thank you for getting back to me!
+
+What you said makes sense and will go from there.
+
+Thank you,
+
+-Alexis
+
+Alexis Bernthal
+(720)-470-8062
+www.linkedin.com/in/alexis-bernthal
+https://www.instagram.com/newsinawink/
+www.newsinawink.org`;
+
+  showResult(thankYouMessage);
+
+  document
+    .getElementById('statusBar')
+    .classList
+    .remove('show');
 };
 
 function setLoading(on) {
@@ -821,3 +855,5 @@ window.copyEmail = function copyEmail() {
 
 </body>
 </html>
+```
+
